@@ -8,6 +8,8 @@ class CreateRooms < ActiveRecord::Migration[6.1]
       t.integer :user_id
       t.string :email
       t.string :encrypted_password, null: false, default: ""
+      t.string :image
+
       
       t.timestamps
     end

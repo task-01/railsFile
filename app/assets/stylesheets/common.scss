@@ -1,7 +1,18 @@
 // @import "bootstrap"; 
+@import "font-awesome";
 * {
   margin: 0%;
   padding: 0%;
+}
+.header_image {
+  margin: 0 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+.header_image > .user_name {
+  margin-top: 20px;
+  margin-right: 10px;
 }
 .menu {
   color: #007bff;
@@ -81,4 +92,154 @@ header {
     height: 65px;
     object-fit: cover;
     border-radius: 50px;
+}
+.all_header {
+  display: flex;
+}
+.text_form {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+.simple_search {
+  margin-top: 13px;
+  padding: .5rem .5rem .5rem 2rem;
+  width: 100%;
+  outline: 0;
+  border: 1px solid #cdcdcd;
+  border-radius: .2rem;
+  color: #000000;
+  box-sizing: border-box;
+  line-height: 1.4rem;
+}
+.simple_search+i {
+  position: absolute;
+  top: 50%;
+  left: .5rem;
+  transform: translateY(-50%);
+  content: '';
+  transition: .3s;
+}
+.simple_search:focus {
+  border: 1px solid #4ab6f6;
+  box-shadow: 0 0 3px #4ab6f6;
+}
+.simple_search:focus+i {
+  color: #4ab6f6;
+}
+.fa-search {
+  margin-left: 182px;
+}
+.registration {
+  text-align: center;
+  display: block;
+  margin: 18px;
+  padding: 0 35px;
+  width: 10%;
+  padding-top: 6px;
+  color: #fff;
+  background-color: #6c757d;
+  text-decoration: none;
+  border-radius: 20px ;
+}
+.session {
+  display: block;
+  text-align: center;
+  width: 10%;
+  color: #fff;
+  margin: 18px;
+  padding: 0px 40px;
+  padding-top: 5px;
+  background-color: #4a90e2;
+  text-decoration: none;
+  border-radius: 20px ;
+}
+.top_page {
+  background-image: url(https://presite-potepancamp-rails-02.herokuapp.com/assets/img_cover_top.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 650px;
+  position: relative;
+}
+.form_page {
+  background: #fff;
+  padding: 24px;
+  border-radius: 5px;
+  width: 435px;
+  height: 230px;
+  position: absolute;
+  left: 100px;
+  top: 200px;
+}
+
+.form_search {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 7px 0px;
+  font-size: 20px;
+}
+.form_search::placeholder {
+  font-size: 15px;
+}
+.sumbit_search {
+  border: #4a90e2;
+  border-radius: 5px;
+  background-color: #4a90e2;
+  color: #fff;
+  padding: 12px 190px;
+}
+.title_potepan {
+  font-size: 28px;
+  line-height: 33px;
+  letter-spacing: 1px;
+}
+.room_td > img {
+  display: block;
+  margin: 0 0 auto;
+  width: 100%;
+  height: 200px;
+  border: solid 0.5px rgba(108, 108, 108, 0.721);
+}
+.search_table, .search_tbody, .seach_table, .room_td {
+  display: block;
+}
+
+.image_td {
+  width: 100%;
+  height: 200px;
+}
+.seach_table {
+  width: 20%;
+  height: 200px;
+  margin: 2%;
+  border: solid 1px black;
+  padding: 15px 2px 100px;
+}
+.search_tbody {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.seach_table > td:nth-child(2) {
+  font-size: 18px;
+  font-weight: bold;
+  color: #909090;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.seach_table > td:nth-child(3) {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.seach_table > td:nth-child(4) {
+  text-align: right;
+  font-size: 16px;
+  letter-spacing: 1px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.user_name {
+  color: #fff;
 }

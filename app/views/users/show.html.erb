@@ -1,4 +1,31 @@
-<%= render "shared/header" %>
+<header>
+  <div class='all_header'>
+    <a><img alt="サイトロゴ画像" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png"></a>
+    <div class='text_form'>
+      <%= search_form_for @q, url: search_users_path do |f| %>
+        <%= f.search_field :roomAddress_cont, class:"simple_search" %>
+        <i class="fas fa-map-marker-alt"></i>
+      <% end %>
+      <%= search_form_for @q, url: search_users_path do |f| %>
+        <%= f.search_field :roomName_cont, class:"simple_search" %>
+        <i class="fa fa-search" aria-hidden="true"></i>
+      <% end %>
+    </div>
+    <div class='user_name'><%= @user.name%></div>
+    <% if @user.image.attached? %>
+      <%= image_tag @user.image, class: "user_icon"%>
+    <% else %>
+      <%= image_tag 'no_image', class: "user_icon" %>
+    <% end %>
+  </div>
+</header>
+<ul class="menu_ul">
+  <li class="menu_li"><%= link_to 'ルーム登録', users_register_path %></li>
+  <li class="menu_li"><%= link_to '予約済みルーム一覧', registers_index_path %></li>
+  <li class="menu_li"><%= link_to '登録済みルーム一覧', users_path %></li>
+  <li class="menu_li"><%= link_to '設定', edit_user_path(id: @user) %></li>
+  <li class="menu_li"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete%></li>
+</ul>
 <div class='account_show'>
   <%= render "shared/setting" %>
   <div class='account_page'>

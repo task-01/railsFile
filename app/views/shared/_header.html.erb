@@ -2,9 +2,9 @@
   <a><img alt="サイトロゴ画像" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png"></a>
   <span class="menu">メニュー</span>
   <ul class="menu_ul">
-    <li class="menu_li"><%= link_to 'ルーム登録',  new_room_path(id: @user.id) %></li>
-    <li class="menu_li"><a href="#">予約済みルーム一覧</a></li>
-    <li class="menu_li"><a href="#">登録済みルーム一覧</a></li>
+    <li class="menu_li"><%= link_to 'ルーム登録', users_register_path %></li>
+    <li class="menu_li"><%= link_to '予約済みルーム一覧', registers_index_path %></li>
+    <li class="menu_li"><%= link_to '登録済みルーム一覧', users_path %></li>
     <li class="menu_li"><a href="#">設定</a></li>
     <li class="menu_li"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete%></li>
   </ul>

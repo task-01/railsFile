@@ -11,10 +11,26 @@
         <i class="fa fa-search" aria-hidden="true"></i>
       <% end %>
     </div>
-    <%= link_to 'ログイン', new_user_session_path, class:'session' %>
-    <%= link_to '登録する', new_user_registration_path, class:'registration'%>
+    <% if user_signed_in? %>
+      <div class='user_name'><%= @current_user.name%></div>
+      <% if @current_user.image.attached? %>
+        <%= image_tag @current_user.image, class: "user_icon"%>
+      <% else %>
+        <%= image_tag 'no_image' %>
+      <% end %>
+    <% else %>
+      <%= link_to 'ログイン', new_user_session_path, class:'session' %>
+      <%= link_to '登録する', new_user_registration_path, class:'registration'%>
+    <% end %>
   </div>
 </header>
+<ul class="menu_ul">
+  <li class="menu_li"><%= link_to 'ルーム登録', users_register_path %></li>
+  <li class="menu_li"><%= link_to '予約済みルーム一覧', registers_index_path(id: @room.id) %></li>
+  <li class="menu_li"><%= link_to '登録済みルーム一覧', users_path %></li>
+  <li class="menu_li"><%= link_to '設定', edit_user_path(id: @user) %></li>
+  <li class="menu_li"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete%></li>
+</ul>
 <div class='account_show'>
   <div class='account_page'>
   <h3>プロフィール</h3>
@@ -41,7 +57,7 @@
     </tr>
   </table>
       <div>
-        <%= form_with model: @register, url: confirmation_path(@register) do |f| %>
+        <%= form_with model: @register, url: confirmation_path(id: @room.id) do |f| %>
         <div>¥<%= @room.roomMoney %>/日</div>
         <table>
           <tr>
@@ -57,8 +73,14 @@
             <td><%= f.number_field :number, class:"posts-content" %></td>
           </tr>
         </table>
+          <%= f.hidden_field :registerImage, value: @room.image.url if @room.image? %>
+          <%= f.hidden_field :user_id, value: @room.user.id %>
+          <%= f.hidden_field :roomName, value: @room.roomName %>
+          <%= f.hidden_field :roomIntroduction, value: @room.roomIntroduction %>
+          <%= f.hidden_field :roomMoney, value: @room.roomMoney %>
+          <%= f.hidden_field :roomId, value: @room.id %>
         <ul>
-          <li><%= link_to 'ログイン', :new_user_session %></li>
+          <li><%= f.submit "予約" %></li>
         </ul>
         <% end %>
       </div>

@@ -1,14 +1,26 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :set_q, only: [:new, :search]
+  
   skip_before_action :verify_authenticity_token, :only => :create
   protect_from_forgery with: :null_session
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  def after_sign_up_path_for(resource)
-    user_path(id: @user)
+  def search
+    @results = @q.result
   end
+  private
 
+  def set_q
+    @q = Room.ransack(params[:q])
+  end
+  # def after_sign_up_path_for(resource)
+  #   user_path(id: @user)
+  # end
+  # def after_sign_out_path_for(resource)
+  #   users_home_path # ログアウト後に遷移するpathを設定
+  # end
   # GET /resource/sign_up
   # def new
   #   super

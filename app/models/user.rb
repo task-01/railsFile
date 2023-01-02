@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  belongs_to :rooms
+  has_many :rooms
+  has_many :registers
   has_one_attached :image
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

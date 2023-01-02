@@ -1,0 +1,17 @@
+<header>
+  <div class='all_header'>
+    <a><img alt="サイトロゴ画像" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png"></a>
+    <div class='text_form'>
+      <%= search_form_for @q, url: search_users_path do |f| %>
+        <%= f.search_field :roomAddress_cont, class:"simple_search" %>
+        <i class="fas fa-map-marker-alt"></i>
+      <% end %>
+      <%= search_form_for @q, url: search_users_path do |f| %>
+        <%= f.search_field :roomName_cont, class:"simple_search" %>
+        <i class="fa fa-search" aria-hidden="true"></i>
+      <% end %>
+    </div>
+    <%= link_to 'ログイン', new_user_session_path, class:'session' %>
+    <%= link_to '登録する', new_user_registration_path, class:'registration'%>
+  </div>
+</header>

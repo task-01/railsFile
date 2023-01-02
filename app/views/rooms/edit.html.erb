@@ -1,0 +1,39 @@
+<header>
+  <a><img alt="サイトロゴ画像" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png"></a>
+  <span class="menu">メニュー</span>
+  <ul class="menu_ul">
+    <li class="menu_li"><%= link_to 'ルーム登録', users_register_path %></li>
+    <li class="menu_li"><%= link_to '予約済みルーム一覧', registers_index_path %></li>
+    <li class="menu_li"><%= link_to '登録済みルーム一覧', users_path %></li>
+    <li class="menu_li"><%= link_to '設定', edit_user_path(id: @user) %></li>
+    <li class="menu_li"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete%></li>
+  </ul>
+  <% if @current_user.image.attached? %>
+    <%= image_tag @current_user.image, class: "user_icon"%>
+  <% else %>
+    <%= image_tag 'no_image' %>
+  <% end %>
+</header>
+<h3>ユーザー情報一覧</h3>
+<table>
+  <thead>
+    <tr>
+      <th>ルーム画像</th>
+      <th>ルーム名</th>
+      <th>ルーム紹介</th>
+      <th>料金</th>
+      <th>作成日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.rooms.each do |room| %>
+      <tr>
+        <td><%= image_tag @room.image.url if @room.image? %></td>
+        <td><%= room.roomName %></td>
+        <td><%= room.roomIntroduction %></td>
+        <td><%= room.roomMoney %></td>
+        <td><%= room.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

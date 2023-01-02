@@ -1,13 +1,31 @@
 Rails.application.routes.draw do
-  # get 'rooms/new'
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  resources :users
+  get 'users/home'
+  get 'users/show'
+  get 'rooms/index'
+  get 'rooms/show'
+  get 'users/register'
+  get 'registers/show'
+  get 'registers/index'
+  get 'rooms/register'
+  post 'registers/confirmation', to: 'registers#confirmation', as: 'confirmation'
+  # post 'registers/complete', to: 'registers#complete', as: 'complete'
   resources :rooms
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  devise_scope :user do#トップページをログイン画面に
-    root "users/sessions#new"
+  resources :users do
+    collection do
+      get 'search'
+    end
   end
+  resources :registers
+  # resources :homes do
+  #   collection do
+  #     get 'search'
+  #   end
+  # end
+  root 'users#home'
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
