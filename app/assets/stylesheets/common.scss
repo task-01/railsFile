@@ -4,6 +4,10 @@
   margin: 0%;
   padding: 0%;
 }
+.all_header {
+  display: flex;
+  position: relative;
+}
 .header_image {
   margin: 0 0 0 auto;
   display: flex;
@@ -17,13 +21,26 @@
 .menu {
   color: #007bff;
 }
+.all_header > .menuUl {
+  background-color: white;
+  position: absolute;
+  text-align: right;
+  right: 10px;
+  top: 72px;
+  list-style: none;
+}
 .menu_li {
   display: none;
+}
+.menu_li > a {
+  text-decoration: none;
+  color: #000000;
 }
 .menu_ul {
   background-color: aliceblue;
   width: 20%;
   margin: 0 0 0 auto;
+  list-style: none;
 }
 .account_show {
   display: flex;
@@ -93,9 +110,7 @@ header {
     object-fit: cover;
     border-radius: 50px;
 }
-.all_header {
-  display: flex;
-}
+
 .text_form {
   display: flex;
   position: relative;

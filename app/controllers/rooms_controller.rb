@@ -18,7 +18,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(params.require(:room).permit(:roomName, :user_id, :roomIntroduction, :roomMoney, :roomAddress, :image, :email, :encrypted_password ))
     if @room.save!
-      redirect_to registers_register_path(id: @room.id)
+      redirect_to rooms_register_path(id: @room.id)
     else 
       flash[:notice] = "失敗"
       @user = User.find_by(params[:user_id])

@@ -16,7 +16,7 @@
       <% if @current_user.image.attached? %>
         <%= image_tag @current_user.image, class: "user_icon"%>
       <% else %>
-        <%= image_tag 'no_image' %>
+        <%= image_tag 'no_image', class: "user_icon" %>
       <% end %>
     <% else %>
       <%= link_to 'ログイン', new_user_session_path, class:'session' %>
