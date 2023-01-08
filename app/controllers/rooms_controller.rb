@@ -16,19 +16,20 @@ class RoomsController < ApplicationController
     @room = Room.new
   end
   def create
-    @room = Room.new(params.require(:room).permit(:roomName, :user_id, :roomIntroduction, :roomMoney, :roomAddress, :image, :email, :encrypted_password ))
-    if @room.save!
+    @user = current_user.id
+    @room = Room.new(params.require(:room).permit(:roomName, :user_id, :roomIntroduction, :roomMoney, :roomAddress, :image, :email, :encrypted_password, :register ))
+    begin @room.save!
       redirect_to rooms_register_path(id: @room.id)
-    else 
+    rescue ActiveRecord::RecordInvalid => e
       flash[:notice] = "失敗"
-      @user = User.find_by(params[:user_id])
+      render("users/register")
     end
   end
 
   def edit
     @rooms = Room.all
   end
-  before_action :set_q, only: [:show, :search, :register]
+  before_action :set_q, only: [:show, :search, :register, :create]
   def show
     @room = Room.find(params[:id])
   end

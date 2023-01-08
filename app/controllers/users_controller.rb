@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # before_action :authenticate_user!, except: :home
-  before_action :set_q, only: [:home, :edit, :show, :index, :search, :register]
+  before_action :set_q, only: [:home, :edit, :update, :show, :index, :search, :register, :sign_up, :sign_in]
   def show
     @user = User.find(params[:id])
   end
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = current_user.id
   end
   def edit
-    # @room = Room.find(params[:id])
+    @q = Room.ransack(params[:q])
     @user = User.find(params[:id])
   end
   def update
@@ -32,7 +32,9 @@ class UsersController < ApplicationController
   end
   def search
     @results = @q.result
-    @user = current_user.id
+    if current_user
+      @user = current_user.id
+    end
   end
   private
 

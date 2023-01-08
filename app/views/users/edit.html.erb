@@ -28,6 +28,7 @@
 </ul>
 <div class="profile">
   <%= render "shared/setting" %>
+  <%= render "devise/shared/error_messages", resource: @user %>
   <%= form_with model: @user do |f| %>
     <table>
       <td><% if @user.image.attached? %>
@@ -43,7 +44,10 @@
         <th><%= f.label :name, "名前" %></th>
         <td><%= f.text_field :name %></td>
       </tr>
-
+      <tr>
+        <th><%= f.label :introduction, "自己紹介" %></th>
+        <td><%= f.text_field :introduction %></td>
+      </tr>
     </table>
     <div>
       <ul>

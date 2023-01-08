@@ -33,6 +33,7 @@
 </ul>
  <h3>ルーム情報登録</h3>
  <%= form_with model: @room, local: true do |f| %>
+   <%= render "devise/shared/error_messages", resource: f.object  %>
    <table>
      <tr>
        <th><%= f.label :roomName, "ルーム名" %></th>

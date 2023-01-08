@@ -49,7 +49,7 @@
         <td><%= link_to room.roomName, rooms_register_path(id: room.id), method: :get %></td>
         <td><%= room.roomIntroduction %></td>
         <td><%= room.roomMoney %></td>
-        <td><%= room.created_at %></td>
+        <td><%= room.created_at.to_s(:yeardate) %></td>
       </tr>
     <% end %>
   </tbody>

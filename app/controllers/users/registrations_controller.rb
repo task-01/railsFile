@@ -1,12 +1,19 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :set_q, only: [:new, :search]
+  before_action :set_q, only: [:new, :search, :create, :edit, :update]
   
-  skip_before_action :verify_authenticity_token, :only => :create
+  # skip_before_action :verify_authenticity_token, :only => :create
   protect_from_forgery with: :null_session
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  def after_update_path_for(resource)
+    # 自分で設定した「マイページ」へのパス
+    edit_user_path(@user)
+  end
+  def after_sign_up_path_for(resource)
+    users_show_path(id: @user.id)
+  end
   def search
     @results = @q.result
   end

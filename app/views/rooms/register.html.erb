@@ -26,7 +26,7 @@
 </header>
 <ul class="menu_ul">
   <li class="menu_li"><%= link_to 'ルーム登録', users_register_path %></li>
-  <li class="menu_li"><%= link_to '予約済みルーム一覧', registers_index_path(id: @room.id) %></li>
+  <li class="menu_li"><%= link_to '予約済みルーム一覧', registers_index_path(@room) %></li>
   <li class="menu_li"><%= link_to '登録済みルーム一覧', users_path %></li>
   <li class="menu_li"><%= link_to '設定', edit_user_path(id: @user) %></li>
   <li class="menu_li"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete%></li>
@@ -49,7 +49,7 @@
     </tr>
     <tr>
       <th>料金</th>
-      <td><%= @room.roomMoney %>/1</td>
+      <td class= 'room_money'><%= @room.roomMoney %>/1</td>
     </tr>
     <tr>
       <th>画像</th>
@@ -58,6 +58,7 @@
   </table>
       <div>
         <%= form_with model: @register, url: confirmation_path(id: @room.id) do |f| %>
+        <%= render "devise/shared/error_messages", resource: f.object  %>
         <div>¥<%= @room.roomMoney %>/日</div>
         <table>
           <tr>
@@ -74,7 +75,7 @@
           </tr>
         </table>
           <%= f.hidden_field :registerImage, value: @room.image.url if @room.image? %>
-          <%= f.hidden_field :user_id, value: @room.user.id %>
+          <%= f.hidden_field :user_id, value: @room.user_id %>
           <%= f.hidden_field :roomName, value: @room.roomName %>
           <%= f.hidden_field :roomIntroduction, value: @room.roomIntroduction %>
           <%= f.hidden_field :roomMoney, value: @room.roomMoney %>
@@ -86,3 +87,9 @@
       </div>
   </div>
 </div>
+<script>
+$(document).ready(function() {
+  let money = $('.room_money').text().replace('/1', '');
+    $('.room_money').text(money);
+  });
+</script>

@@ -11,7 +11,23 @@
         <i class="fa fa-search" aria-hidden="true"></i>
       <% end %>
     </div>
-    <%= link_to 'ログイン', new_user_session_path, class:'session' %>
-    <%= link_to '登録する', new_user_registration_path, class:'registration'%>
+    <% if user_signed_in? %>
+      <div class='user_name'><%= @current_user.name%></div>
+      <% if @current_user.image.attached? %>
+        <%= image_tag @current_user.image, class: "user_icon"%>
+      <% else %>
+        <%= image_tag 'no_image', class: "user_icon" %>
+      <% end %>
+      <ul class="menuUl">
+        <li class="menu_li"><%= link_to 'ルーム登録', users_register_path %></li>
+        <li class="menu_li"><%= link_to '予約済みルーム一覧', registers_index_path %></li>
+        <li class="menu_li"><%= link_to '登録済みルーム一覧', users_path %></li>
+        <li class="menu_li"><%= link_to '設定', edit_user_path(id: @user) %></li>
+        <li class="menu_li"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete%></li>
+      </ul>
+    <% else %>
+      <%= link_to 'ログイン', new_user_session_path, class:'session' %>
+      <%= link_to '登録する', new_user_registration_path, class:'registration'%>
+    <% end %>
   </div>
 </header>

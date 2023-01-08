@@ -3,6 +3,9 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   before_action :set_q, only: [:new, :search]
+  def after_sign_in_path_for(resource)
+    users_show_path(id: @user.id)
+  end
   def search
     @results = @q.result
   end

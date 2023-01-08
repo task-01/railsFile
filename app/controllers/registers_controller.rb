@@ -1,18 +1,20 @@
 class RegistersController < ApplicationController
-  before_action :set_q, only: [:index, :search, :register, :confirmation, :complete, :show]
+  before_action :set_q, only: [:index, :search, :register, :confirmation, :complete, :show, :create]
   def confirmation
+    @room = Room.find(params[:id])
     @user = current_user.id
-    # binding.pry
     @register = Register.new(params.require(:register).permit(:roomName, :user_id, :roomIntroduction, :roomMoney, :roomAddress, :registerImage, :end_date, :start_date, :number, :room_id ))
-    # binding.pry
-    render confirmation_path(id: @register.id) if @register.invalid?
+    render("rooms/register") if @register.invalid?
 	end
   def create
     @user = current_user.id
     @register = Register.new(params.require(:register).permit(:roomName, :user_id, :roomIntroduction, :roomMoney, :roomAddress, :registerImage, :end_date, :start_date, :number, :room_id ))
-    @register.save
-    # binding.pry
-    redirect_to registers_show_path(id: @register.id) 
+    if @register.save
+      redirect_to registers_show_path(id: @register.id) 
+    else 
+      flash[:notice] = "失敗"
+       redirect_to rooms_register_path(id: @register.room.id)
+    end
     # binding.pry
   end
   def index 
@@ -39,7 +41,7 @@ class RegistersController < ApplicationController
   end
   def search
     @results = @q.result
-    @user = current_user.id
+    # @user = current_user.id
   end
   private
 
