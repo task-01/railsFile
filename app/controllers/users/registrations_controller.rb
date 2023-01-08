@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :set_q, only: [:new, :search, :create, :edit, :update]
   
   # skip_before_action :verify_authenticity_token, :only => :create
-  protect_from_forgery with: :null_session
+  # protect_from_forgery with: :null_session
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   def after_update_path_for(resource)
