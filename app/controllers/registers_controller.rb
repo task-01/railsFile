@@ -1,10 +1,16 @@
 class RegistersController < ApplicationController
-  before_action :set_q, only: [:index, :search, :register, :confirmation, :complete, :show, :create]
+  before_action :set_q, only: [:index, :search, :register, :confirmation, :complete, :show, :create, :back]
   def confirmation
     @room = Room.find(params[:id])
     @user = current_user.id
     @register = Register.new(params.require(:register).permit(:roomName, :user_id, :roomIntroduction, :roomMoney, :roomAddress, :registerImage, :end_date, :start_date, :number, :room_id ))
     render("rooms/register") if @register.invalid?
+	end
+  def back
+    @room = Room.find(params[:id])
+    @user = current_user.id
+		@register = Register.new(params.require(:register).permit(:roomName, :user_id, :roomIntroduction, :roomMoney, :roomAddress, :registerImage, :end_date, :start_date, :number, :room_id ))
+		render("rooms/register")
 	end
   def create
     @user = current_user.id
@@ -18,10 +24,7 @@ class RegistersController < ApplicationController
     # binding.pry
   end
   def index 
-    # binding.pry
-    # @room = Room.find(params[:id])
     @registers = Register.all.order(created_at: :desc) 
-    # binding.pry
     @user = current_user.id
   end
   def show
@@ -37,7 +40,7 @@ class RegistersController < ApplicationController
   private
   def register_params
     @user = current_user.id
-    params.require(:register).permit(:roomName, :user_id, :roomIntroduction, :roomMoney, :roomAddress, :registerImage, :email, :end_date, :start_date, :number)
+    params.require(:register).permit(:roomName, :user_id, :roomIntroduction, :roomMoney, :roomAddress, :registerImage, :email, :end_date, :start_date, :number, :back)
   end
   def search
     @results = @q.result

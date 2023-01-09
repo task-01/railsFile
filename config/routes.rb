@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'registers/show'
   get 'registers/index'
   get 'rooms/register'
+  post 'registers/back' 
   post 'registers/confirmation', to: 'registers#confirmation', as: 'confirmation'
   # post 'registers/complete', to: 'registers#complete', as: 'complete'
   resources :rooms

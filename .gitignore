@@ -19,6 +19,7 @@ task_app/app/views/registers/register.html.erb
 room.html.erb
 confirm.html.erb
 complete.html.erb
+task_app/app/views/registers/register.html.erb
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
 config/initializers/secret_token.rb
 config/master.key

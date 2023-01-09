@@ -29,7 +29,7 @@ class RoomsController < ApplicationController
   def edit
     @rooms = Room.all
   end
-  before_action :set_q, only: [:show, :search, :register, :create]
+  before_action :set_q, only: [:show, :search, :register, :create, :index]
   def show
     @room = Room.find(params[:id])
   end

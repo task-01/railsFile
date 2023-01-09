@@ -66,7 +66,20 @@
   <%= form.hidden_field :user_id %>
   <%= form.hidden_field :room_id %>
 	<%= form.submit '送信する' %>
-  <%= link_to '戻る', :back %>
+<% end %>
+<%= form_for @register, method: :post, url: registers_back_url(id: @room.id) do |form| %>
+	<%= form.hidden_field :roomName %>
+	<%= form.hidden_field :roomAddress %>
+	<%= form.hidden_field :roomIntroduction %>
+  <%= form.hidden_field :roomMoney %>
+  <%= form.hidden_field :start_date %>
+	<%= form.hidden_field :end_date %>
+  <%= form.hidden_field :roomMoney %>
+  <%= form.hidden_field :number %>
+  <%= form.hidden_field :registerImage %>
+  <%= form.hidden_field :user_id %>
+  <%= form.hidden_field :room_id %>
+	<%= form.submit '入力画面に戻る' %>
 <% end %>
 <script>
 $(document).ready(function() {
