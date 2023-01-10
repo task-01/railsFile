@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   post 'registers/confirmation', to: 'registers#confirmation', as: 'confirmation'
   # post 'registers/complete', to: 'registers#complete', as: 'complete'
   resources :rooms
-  resources :users
   resources :users do
     collection do
       get 'search'
